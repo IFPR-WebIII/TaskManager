@@ -23,6 +23,7 @@
     <tr>
         <td>Id</td>
         <td>Título</td>
+        <td>Estado</td>
         <td>Data</td>
         <td>Opções</td>
     </tr>
@@ -30,11 +31,15 @@
     <tr th:each="t : ${tasksList}">
         <td th:text="${t.id}">Id</td>
         <td th:text="${t.titulo}">Título</td>
-        <td th:text="${#temporals.format(t.data, 'dd/MM/yyyy')}">Data</td>
-<td>
-    <a th:href="@{tasks/edit/{id}(id=${t.id})}">editar</a>
-    <a th:href="@{tasks/remove/{id}(id=${t.id})}">excluir</a>
-</td>
+        <td th:text="${t.estado.descricao}">Título</td>
+        <!-- <td th:text="${#temporals.format(t.data, 'dd/MM/yyyy')}">Data</td> -->
+        <td th:text="${t.data}">Título</td>
+
+        <td>
+            <a th:href="@{/tasks/edit/{id}(id=${t.id})}">editar</a>
+            <a th:href="@{/tasks/remove/{id}(id=${t.id})}">excluir</a>
+            <a th:href="@{/tasks/status/{id}(id=${t.id})}">alterar estado</a>
+        </td>
     </tr>
 
 </table>

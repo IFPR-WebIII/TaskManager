@@ -1,23 +1,28 @@
 package br.edu.ifpr.task_manager.models;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.edu.ifpr.task_manager.enums.TaskStatus;
+
 public class Task {
 
-    private Long id;
+    private UUID id;
     private String titulo;
     private String descricao;
+    private TaskStatus estado;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDate data;
 
-    public Task(Long id, String titulo, String descricao, LocalDate data) {
-        this.id = id;
+    public Task(String titulo, String descricao, LocalDate data) {
+        this.id = UUID.randomUUID();
         this.titulo = titulo;
         this.descricao = descricao;
         this.data = data;
+        this.estado = TaskStatus.IN_PROGRESS;
     }
 
     public Task() {}
@@ -41,12 +46,20 @@ public class Task {
         this.data = data;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
+    }
+
+    public TaskStatus getEstado() {
+        return estado;
+    }
+
+    public void setEstado(TaskStatus estado) {
+        this.estado = estado;
     }
     
 }
